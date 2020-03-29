@@ -1,14 +1,14 @@
 version: '2.2'
 
 services:
-#  feedol-ui:
-#    image: feedol-ui:1.0
-#    build: feedol-ui/
-#    restart: always
-#    network_mode: "host"
-#    hostname: localhost
-#    ports:
-#      - 4200:4200
+  ui:
+    image: ui:1.0
+    build: ui/
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 80:4200
 #
 #  eureka-server:
 #    image: eureka-server:1.0
