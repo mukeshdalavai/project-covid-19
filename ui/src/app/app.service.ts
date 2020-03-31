@@ -14,4 +14,10 @@ export class AppService {
     console.log("Fetching HotSpots");
     return this.http.get<any>(url);
   }
+
+  getStats(){
+    const url = `https://api.rootnet.in/covid19-in/stats/latest`;
+    console.group("Fetching Stats");
+    return this.http.get<any>(url);
+  }
 }
