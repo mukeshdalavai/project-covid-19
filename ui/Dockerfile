@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY . .
 
+RUN npx npm-force-resolutions
 RUN npm install
 
 RUN npm install http-server -g
