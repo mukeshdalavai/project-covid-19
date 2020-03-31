@@ -10,7 +10,7 @@ export class AppService {
   constructor(private http : HttpClient) { }
 
   getHotSpots(){
-    const url = `http://3.6.88.34:8080/api/v1/get-hotspots`;
+    const url = `http://13.235.78.95:8080/api/v1/get-hotspots`;
     console.log("Fetching HotSpots");
     return this.http.get<any>(url);
   }
