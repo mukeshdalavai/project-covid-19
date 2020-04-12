@@ -9,4 +9,13 @@ public class PropertiesConfiguration {
     @Value("${fetchHotSpots.url}")
     public String fetchHotSpotsUrl;
 
+    @Value("${fetchStats.url}")
+    public String fetchStatsUrl;
+
+    @Value("${fetchDistrictStats.url}")
+    public String fetchDistrictStatsUrl;
+
+    @Value("{$dataFile.location}")
+    public String dataFileLocation;
+
 }

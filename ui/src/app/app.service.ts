@@ -9,15 +9,28 @@ export class AppService {
 
   constructor(private http : HttpClient) { }
 
-  getHotSpots(){
-    const url = `http://13.235.78.95:8080/api/v1/get-hotspots`;
-    console.log("Fetching HotSpots");
+  // getHotSpots(){
+  //   const url = `http://52.66.213.210:8080/api/v1/get-hotspots`;
+  //   console.log("Fetching HotSpots");
+  //   return this.http.get<any>(url);
+  // }
+
+
+  // getGovStatesData(){
+  //   const url = `https://api.data.gov.in/resource/cd08e47b-bd70-4efb-8ebc-589344934531?limit=all&api-key=579b464db66ec23bdd000001cdc3b564546246a772a26393094f5645&format=json`;
+  //   console.log("Fetching Government Data for States");
+  //   return this.http.get<any>(url);
+  // }
+
+  fetchStats(){
+    const url = `http://covidmapper.in:8080/api/v1/data`;
+    // console.log("Fetching stats data");
     return this.http.get<any>(url);
   }
 
-  getStats(){
-    const url = `https://api.rootnet.in/covid19-in/stats/latest`;
-    console.group("Fetching Stats");
+  fetchDistrictsData(){
+    const url = `http://covidmapper.in:8080/api/v1/district-data`;
+    // console.log("Fetching Districts Data");
     return this.http.get<any>(url);
   }
 }

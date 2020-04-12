@@ -1,0 +1,13 @@
+.text-style{
+    color: cornsilk;
+}
+
+.text-style:hover{
+    background-color: cornsilk;
+    color: #4c4b47;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #4c4b47;
+}
