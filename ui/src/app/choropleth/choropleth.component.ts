@@ -63,6 +63,13 @@ export class ChoroplethComponent implements OnInit {
       svg.append("g").selectAll('path')
       .data(topojson.feature(indiaData, indiaData.objects.gadm36_IND_1).features)
       .enter()
+      // .append('text')
+      // .attr("x", function(d) { return path.centroid(d)[0];})
+      // .attr("y", function(d) { return path.centroid(d)[1];})
+      // .text( function (d) { return d.properties.NAME_1; })
+      // .attr("font-family", "sans-serif")
+      // .attr("font-size", "5px")
+      // .attr("fill", "black")
       .append('path')
       .attr("d", function(abc){return path(abc);})
       .style('fill', '#8cea8e')
@@ -78,6 +85,31 @@ export class ChoroplethComponent implements OnInit {
         d3.select(this).style('fill','#8cea8e').style('stroke-width','1px').style('opacity','0.5');
       });
       
+
+// //Add SVG Text Element Attributes
+                // svg.select('g').selectAll('text')
+                //  .data(topojson.feature(indiaData, indiaData.objects.gadm36_IND_1).features)
+                //  .enter()
+                //  .append('text')
+                //  .attr("x", function(d) { return path.centroid(d)[0]-10;})
+                //  .attr("y", function(d) { return path.centroid(d)[1];})
+                //  .text( function (d) { return d.properties.NAME_1; })
+                //  .attr("font-family", "sans-serif")
+                //  .attr("font-size", "10px")
+                //  .attr("fill", "black");
+
+                 
+        // svg.select('g').selectAll("circle")
+        //     .data(topojson.feature(indiaData, indiaData.objects.gadm36_IND_1).features)
+        //     .enter()
+        //     .append("circle")
+        //     .attr("cx", function(d) {console.log(path.centroid(d)[0]-10); return parseInt(path.centroid(d)[0]);})
+        //     .attr("cy", function(d) {return path.centroid(d)[1];})
+        //     .attr("r", "3px")
+        //     .attr('fill','blue')
+        //     .attr('d',path);
+
+                 
 
       svg.call(d3.zoom()
       .extent([[0, 0], [width, height]])

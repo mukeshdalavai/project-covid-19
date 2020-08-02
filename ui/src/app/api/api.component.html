@@ -1,1 +1,183 @@
-<p>api works!</p>
+
+<div style="margin-top: 100px;">
+   
+</div>
+<div class="w3-container">
+    <h2 style="color: rgb(179, 69, 69); text-decoration: underline;">
+        Documentation
+        </h2><br>
+        <p style="font-size: 20px; color: rgb(121, 121, 121);">End Points</p>
+    <mat-expansion-panel style="margin-bottom: 20px;">
+        <mat-expansion-panel-header style="background-color: cornsilk">
+          <mat-panel-title style="color: brown;">
+            GET
+          </mat-panel-title>
+          <mat-panel-description>
+            /api/v1/data
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <h3 style="color: rgb(179, 69, 69);">Implementation Notes</h3>
+        <p>Get the entire data which contains a list of states that has daily reports and list of districts embedded.</p>
+        <h3 style="color: rgb(179, 69, 69);">Response Class (Status 200)</h3>
+        <pre style="background-color: #f4f4f4; border-style: solid; border-color: #a7a7a7; border-width: 0.5px;">
+            <code>
+                {{ '{' }}
+                    "confirmed" : "",
+                    "active" : "",
+                    "recovered" : "",
+                    "deaths" : "",
+                    "states" : [
+                                {{ '{' }}
+                                  "name" : "",
+                                  "confirmed" : "",
+                                  "active" : "",
+                                  "recovered" : "",
+                                  "deaths" : "",
+                                  "dayReports" : [
+                                                  {{ '{' }}
+                                                      "date" : "",
+                                                      "confirmed" : "",
+                                                      "active" : "",
+                                                      "recovered" : "",
+                                                      "deaths" : ""
+                                                  {{ '}' }},
+                                                  {{ '{' }}
+                                                      ...
+                                                  {{ '}' }}
+                                                 ]
+                                  "districts" : [
+                                                 {{ '{' }}
+                                                    "name" : "",
+                                                    "confirmed" : "",
+                                                    "active" : "",
+                                                    "recovered" : "",
+                                                    "deaths" : ""
+                                                 {{ '}' }},
+                                                 {{ '{' }}
+                                                    ...
+                                                 {{ '}' }}
+                                            ]
+                                {{ '}' }},
+                                {{ '{'}}
+                                    ...
+                                {{ '}'}}
+                            ]
+                {{ '}' }}
+            </code>
+        </pre>
+        <h3 style="color: rgb(179, 69, 69);">Response Content Type : application/json</h3>
+        <h3 style="color: rgb(179, 69, 69);">Parameters</h3>
+        None
+        <h3 style="color: rgb(179, 69, 69)">Sample Request</h3>
+        <p>http://covidmapper.in/api/v1/data</p>
+      </mat-expansion-panel>
+    
+      <mat-expansion-panel style="margin-bottom: 20px;">
+        <mat-expansion-panel-header style="background-color: cornsilk">
+          <mat-panel-title style="color: brown;">
+            GET
+          </mat-panel-title>
+          <mat-panel-description>
+            /api/v1/state-data
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <h3 style="color: rgb(179, 69, 69);">Implementation Notes</h3>
+        <p>Get the list of states with daily reports.</p>
+        <h3 style="color: rgb(179, 69, 69);">Response Class (Status 200)</h3>
+        <pre style="background-color: #f4f4f4; border-style: solid; border-color: #a7a7a7; border-width: 0.5px;">
+            <code>
+                [
+                    {{ '{' }}
+                      "name" : "",
+                      "confirmed" : "",
+                      "active" : "",
+                      "recovered" : "",
+                      "deaths" : "",
+                      "dayReports" : [
+                                        {{ '{' }}
+                                            "date" : "",
+                                            "confirmed" : "",
+                                            "active" : "",
+                                            "recovered" : "",
+                                            "deaths" : ""
+                                        {{ '}' }},
+                                        {{ '{' }}
+                                            ...
+                                        {{ '}' }}
+                                      ]
+                      "districts" : [
+                                        {{ '{' }}
+                                            "name" : "",
+                                            "confirmed" : "",
+                                            "active" : "",
+                                            "recovered" : "",
+                                            "deaths" : ""
+                                        {{ '}' }},
+                                        {{ '{' }}
+                                            ...
+                                        {{ '}' }}
+                                    ]
+                     {{ '}' }},
+                     {{ '{'}}
+                        ...
+                     {{ '}'}}
+                ]
+            </code>
+        </pre>
+        <h3 style="color: rgb(179, 69, 69);">Response Content Type : application/json</h3>
+        <h3 style="color: rgb(179, 69, 69);">Parameters</h3>
+        <pre style="background-color: #f4f4f4; border-style: solid; border-color: #a7a7a7; border-width: 0.5px;">
+         1) Name : districts
+            Type : boolean
+            Values : true - > Includes list of districts in the response.
+                     false - > Response will not contain the data for districts.
+            
+    
+         2) Name : dayReports
+            Type : boolean
+            Values : true - > Includes daily reports for the states.
+                     false - > Response will not contain daily reports for the states.
+        </pre>
+        <h3 style="color: rgb(179, 69, 69)">Sample Request</h3>
+        <p>http://covidmapper.in/api/v1/state-data?districts=true&dayReports=false</p>
+      </mat-expansion-panel>
+    
+      <mat-expansion-panel style="margin-bottom: 20px;">
+        <mat-expansion-panel-header style="background-color: cornsilk">
+          <mat-panel-title style="color: brown;">
+            GET
+          </mat-panel-title>
+          <mat-panel-description>
+            /api/v1/district-data
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <h3 style="color: rgb(179, 69, 69);">Implementation Notes</h3>
+        <p>Get the list of districts with current stats.</p>
+        <h3 style="color: rgb(179, 69, 69);">Response Class (Status 200)</h3>
+        <pre style="background-color: #f4f4f4; border-style: solid; border-color: #a7a7a7; border-width: 0.5px;">
+            <code>
+                [
+                    {{ '{' }}
+                      "name" : "",
+                      "confirmed" : "",
+                      "active" : "",
+                      "recovered" : "",
+                      "deaths" : "",
+                     {{ '}' }},
+                     {{ '{'}}
+                        ...
+                     {{ '}'}}
+                ]
+            </code>
+        </pre>
+        <h3 style="color: rgb(179, 69, 69);">Response Content Type : application/json</h3>
+        <h3 style="color: rgb(179, 69, 69);">Parameters</h3>
+        None
+        <h3 style="color: rgb(179, 69, 69)">Sample Request</h3>
+        <p>http://covidmapper.in/api/v1/district-data</p>
+      </mat-expansion-panel>
+    
+</div>
+<div style="margin-bottom: 20%;">
+
+</div>

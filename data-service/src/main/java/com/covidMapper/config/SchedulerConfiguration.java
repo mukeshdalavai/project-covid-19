@@ -18,7 +18,7 @@ public class SchedulerConfiguration {
     @Scheduled(cron = "${cron.expression}")
     public void runFetchData() throws InterruptedException {
         System.out.println(new Date()+"==>Count="+(x++));
-//        dataService.fetchStats();
+        dataService.fetchStats();
 //        dataService.fetchHotSpots();
     }
 }

@@ -81,8 +81,19 @@ public class DataController {
     }
 
     @GetMapping("state-data")
-    public ResponseEntity<?> getStatesData() throws Exception{
-        ResponseEntity responseEntity = new ResponseEntity<List<StateData>>(dataService.getStatesData() , HttpStatus.ACCEPTED);
+    public ResponseEntity<?> getStatesData(@RequestParam boolean districts, @RequestParam boolean dayReports) throws Exception{
+        List<StateData> states = dataService.getStatesData();
+        if (!districts){
+            for (StateData state : states){
+                state.setDistricts(null);
+            }
+        }
+        if (!dayReports){
+            for (StateData state : states){
+                state.setDayReports(null);
+            }
+        }
+        ResponseEntity responseEntity = new ResponseEntity<List<StateData>>(states, HttpStatus.ACCEPTED);
         logger.info("Successfully Returned States Data");
         return responseEntity;
     }

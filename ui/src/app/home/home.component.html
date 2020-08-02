@@ -1,160 +1,162 @@
-
-<div style="background-color: #fefefe">
-  <div class="row totalStats" style="width: 100%;">
-    <div class="col-6 col-md-3 stats-margin cards-text container" style="color: #f3c53c; height: 40px;">
-      <div>Confirmed</div>
-      <div id="totalConfirmed"></div>
-    </div>
-    <div class="col-6 col-md-3 stats-margin cards-text container" style="color: #57a5e9; height: 40px;">
-      <div>Active</div>
-      <div id="totalActive"></div>
-    </div>
-    <div class="col-6 col-md-3 stats-margin cards-text container" style="color: #fc6969; height: 40px;">
-      <div>Deaths</div>
-      <div id="totalDeaths"></div>
-    </div>
-    <div class="col-6 col-md-3 stats-margin cards-text container" style="color: #6ad870; height: 40px;">
-      <div>Recovered</div>
-      <div id="totalRecovered"></div>
-    </div>
-  </div>
-  
-  <p style="font-weight: bold;text-align: center; margin-top: 3%;">* Hover over the map for state specific details</p>
-  <div *ngIf = 'isMobile; then mobileBlock; else desktopBlock'></div>
-    <ng-template #desktopBlock>
-      <div class="card-deck">
-        <div class="col-sm-12 col-md-3" style="padding: 0%;">
-          <div class="card" style=" max-height: 20rem; padding: 0%; border-color: #4c4b47">
-            <div class="card-header cards-text card-header-style" style="background-color: #4c4b47; color: cornsilk; font-weight: bolder;"><span id="state" class="info"></span><br></div>
-            <div class="card-body " style="background-color: cornsilk; color: #4c4b47; font-weight: bold;">
-              <div id="stats" style="text-align: center;">
-                <div class="row">
-                  <div class="col-6" style="color: #fccf4a;">
-                   <div id="textConfirmed"></div><span id="confirmed" class="info"></span> 
-                  </div>
-                  <div class="col-6" style="color: #71b0e8;">
-                    <div id="textActive"></div><span id="active" class="info"></span><br>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-6" style="color: #f77b7b;">
-                    <div id="textDeaths"></div><span id="deaths" class="info"></span> 
-                  </div>
-                  <div class="col-6" style="color: #82d386;">
-                    <div id="textRecovered"></div><span id="recovered" class="info"></span><br>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="pieChart" style="height: 250px; margin-top: 2%;"></div>
-        </div>
-    
-        <div class="card col-sm-12 col-md-6" style="padding: 0%; border-color: #4c4b47; border-width: 2px;">
-          <app-choropleth style="width: 100%; height: 100%;" (pushToParent)="receiveMessage($event)"></app-choropleth>
-        </div>
-    
-        <div class="col-sm-12 col-md-3" style="padding: 0%;">
-          <div class="card" style= "max-height: 20rem; padding: 0%; border-color: #4c4b47;">
-            <div id="districtName" class="card-header cards-text card-header-style" style="background-color: #4c4b47; color: cornsilk;" ></div>
-            <div class="card-body" style="background-color: cornsilk; color: #4c4b47;" >
-              <div id="tooltip" style="text-align: center; color: #fccf4a; font-weight: bold;">
-                Confirmed <br><span id="districtConfirmed" class="info"></span> 
-              </div>
-            </div>
-          </div>
-          <div id="lineChart" style="width: 100%; height: 250px; margin-top: 4%;"></div>
-        </div>
+<div (window:resize)="onResize($event)">
+  <div style="background-color: #fefefe">
+    <div class="row totalStats" style="width: 100%;">
+      <div class="col-6 col-md-3 stats-margin cards-text container" style="color: #f3c53c; height: 40px;">
+        <div>Confirmed</div>
+        <div id="totalConfirmed"></div>
       </div>
-    </ng-template>
-    <ng-template #mobileBlock>
-      <div class="card-deck">
-        <div class="col-sm-12 col-md-3">
-          <div class="card" style=" max-height: 20rem; padding: 0%; border-color: #4c4b47">
-            <div class="card-header cards-text card-header-style" style="background-color: #4c4b47; color: cornsilk; font-weight: bolder;"><span id="state" class="info"></span><br></div>
-            <div class="card-body " style="background-color: cornsilk; color: #4c4b47; font-weight: bold;">
-              <div id="stats" style="text-align: center;">
-                <div class="row">
-                  <div class="col-6" style="color: #fccf4a;">
-                    Confirmed <br> <span id="confirmed" class="info"></span> 
+      <div class="col-6 col-md-3 stats-margin cards-text container" style="color: #57a5e9; height: 40px;">
+        <div>Active</div>
+        <div id="totalActive"></div>
+      </div>
+      <div class="col-6 col-md-3 stats-margin cards-text container" style="color: #fc6969; height: 40px;">
+        <div>Deaths</div>
+        <div id="totalDeaths"></div>
+      </div>
+      <div class="col-6 col-md-3 stats-margin cards-text container" style="color: #6ad870; height: 40px;">
+        <div>Recovered</div>
+        <div id="totalRecovered"></div>
+      </div>
+    </div>
+    
+    <p style="font-weight: bold;text-align: center; margin-top: 3%;">* Hover over the map for state specific details</p>
+    <div *ngIf = 'isMobile; then mobileBlock; else desktopBlock'></div>
+      <ng-template #desktopBlock>
+        <div class="card-deck" style="width: 100%; margin: 0%;">
+          <div class="col-sm-12 col-md-3" style="padding: 0%;">
+            <div class="card" style=" max-height: 20rem; padding: 0%; border-color: #a5a5a4; margin-left: 0%;">
+              <div class="card-header cards-text card-header-style" style="background-color: #4c4b47; color: cornsilk; font-weight: bolder;"><span id="state" class="info"></span><br></div>
+              <div class="card-body " style="background-color: cornsilk; color: #4c4b47; font-weight: bold;">
+                <div id="stats" style="text-align: center;">
+                  <div class="row">
+                    <div class="col-6" style="color: #fccf4a;">
+                     <div id="textConfirmed"></div><span id="confirmed" class="info"></span> 
+                    </div>
+                    <div class="col-6" style="color: #71b0e8;">
+                      <div id="textActive"></div><span id="active" class="info"></span><br>
+                    </div>
                   </div>
-                  <div class="col-6" style="color: #71b0e8;">
-                    Active <br> <span id="active" class="info"></span><br>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-6" style="color: #f77b7b;">
-                    Deaths <br> <span id="deaths" class="info"></span> 
-                  </div>
-                  <div class="col-6" style="color: #82d386;">
-                    Recovered <br> <span id="recovered" class="info"></span><br>
+                  <div class="row">
+                    <div class="col-6" style="color: #f77b7b;">
+                      <div id="textDeaths"></div><span id="deaths" class="info"></span> 
+                    </div>
+                    <div class="col-6" style="color: #82d386;">
+                      <div id="textRecovered"></div><span id="recovered" class="info"></span><br>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div id="pieChart" style="height: 250px; margin-top: 2%;"></div>
           </div>
-          <div class="card col-sm-12 col-md-6" style="padding: 0%; height: 200px; border-color: #4c4b47; border-width: 2px;">
-            <app-choropleth style="height: 100%;" (pushToParent)="receiveMessage($event)"></app-choropleth>
+      
+          <div class="card col-sm-12 col-md-6" style="padding: 0%; border-color: #a5a5a4; border-width: 2px;">
+            <app-choropleth style="width: 100%; height: 100%;" (pushToParent)="receiveMessage($event)"></app-choropleth>
           </div>
-          <div class="card" style= "max-height: 20rem; padding: 0%; border-color: #4c4b47;">
-            <div id="districtName" class="card-header cards-text card-header-style" style="background-color: #4c4b47; color: cornsilk;" ></div>
-            <div class="card-body" style="background-color: cornsilk; color: #4c4b47;" >
-              <div id="tooltip" style="text-align: center; color: #fccf4a; font-weight: bold;">
-                Confirmed <br><span id="districtConfirmed" class="info"></span> 
+      
+          <div class="col-sm-12 col-md-3" style="padding: 0%;">
+            <div class="card" style= "max-height: 20rem; padding: 0%; border-color: #a5a5a4; margin-right: 0%;">
+              <div id="districtName" class="card-header cards-text card-header-style" style="background-color: #4c4b47; color: cornsilk" ></div>
+              <div class="card-body" style="background-color: cornsilk" >
+                <div id="tooltip" style="text-align: center; color: #fccf4a; font-weight: bold;">
+                  Confirmed <br><span id="districtConfirmed" class="info"></span> 
+                </div>
               </div>
             </div>
+            <div id="lineChart" style="width: 100%; height: 250px; margin-top: 4%;"></div>
           </div>
-          <div id="lineChart" style="width: 100%; height: 250px; margin-top: 4%;"></div>
-          <div id="pieChart" style="height: 250px; margin-top: 2%;"></div>
-        </div>    
-      </div>  
-    </ng-template>
- 
-  
-
-
-  <div class="w3-container" *ngIf = "stats != null;">
-    <div class="row">
-        <div class="col-sm-12 col-md-4 " style="margin-top: 2%; overflow: hidden;" *ngFor = "let state of stats.states">
-            <div class="card card-flip h-100">
-                <div class="card-front card" style="background-color: #fefefe">
-                  <div class="card-header cards-text card-header-style" style="background-color: whitesmoke; color: rgb(78, 78, 78)">
-                    {{state.name}}
-                  </div>
-                  <div class="card-body cards-text">
-                    <div class="card-deck">
-                      <div class="card" style="background-color: #fce9b2; color: #fcbd01;">Confirmed <br>{{state.confirmed}}</div>
-                      <div class="card" style="background-color: #bed7ec; color: #2e92eb;">Active <br> {{state.active}}</div>
-                    </div>
-                    <br class="d-none d-md-block">
-                    <div class="card-deck">
-                      <div class="card" style="background-color: #fac9c9; color: #fc6a6a;;">Deaths <br>{{state.deaths}}</div>
-                      <div class="card" style="background-color: #b3dab5; color: #32b639;">Recovered <br> {{state.recovered}}</div>
-                    </div>
-                  </div>
-                </div>
-                <!-- <div class="card-back">
-                  <ng-container>
-                    <canvas
-                        baseChart
-                        [chartType]="'line'"
-                        [datasets]="chartData"
-                        [labels]="labelsData"
-                        [options]="chartOptions"
-                        [legend]="true">
-                    </canvas>
-                  </ng-container> -->
-                <!-- </div> -->
-            </div>
         </div>
+      </ng-template>
+      <ng-template #mobileBlock>
+        <div class="card-deck" style="width: 100%; margin: 0%;">
+          <div class="col-sm-12 col-md-3">
+            <div class="card" style=" max-height: 20rem; padding: 0%; border-color: #a5a5a4">
+              <div class="card-header cards-text card-header-style" style="background-color: #4c4b47; color: cornsilk; font-weight: bolder;"><span id="state" class="info"></span><br></div>
+              <div class="card-body " style="background-color: cornsilk; color: #4c4b47; font-weight: bold;">
+                <div id="stats" style="text-align: center;">
+                  <div class="row">
+                    <div class="col-6" style="color: #fccf4a;">
+                      Confirmed <br> <span id="confirmed" class="info"></span> 
+                    </div>
+                    <div class="col-6" style="color: #71b0e8;">
+                      Active <br> <span id="active" class="info"></span><br>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6" style="color: #f77b7b;">
+                      Deaths <br> <span id="deaths" class="info"></span> 
+                    </div>
+                    <div class="col-6" style="color: #82d386;">
+                      Recovered <br> <span id="recovered" class="info"></span><br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card col-sm-12 col-md-6" style="padding: 0%; height: 200px; border-color: #a5a5a4; border-width: 2px;">
+              <app-choropleth style="height: 100%;" (pushToParent)="receiveMessage($event)"></app-choropleth>
+            </div>
+            <div class="card" style= "max-height: 20rem; padding: 0%; border-color: #a5a5a4">
+              <div id="districtName" class="card-header cards-text card-header-style" style="background-color: #4c4b47; color: cornsilk;" ></div>
+              <div class="card-body" style="background-color: cornsilk; color: #4c4b47;" >
+                <div id="tooltip" style="text-align: center; color: #fccf4a; font-weight: bold;">
+                  Confirmed <br><span id="districtConfirmed" class="info"></span> 
+                </div>
+              </div>
+            </div>
+            <div id="lineChart" style="width: 100%; height: 250px; margin-top: 4%;"></div>
+            <div id="pieChart" style="height: 250px; margin-top: 2%;"></div>
+          </div>    
+        </div>  
+      </ng-template>
+   
+    
+  
+  
+    <div class="w3-container" *ngIf = "stats != null;">
+      <div class="row">
+          <div class="col-sm-12 col-md-4 " style="margin-top: 2%; overflow: hidden;" *ngFor = "let state of stats.states">
+              <div class="card card-flip h-100">
+                  <div class="card-front card" style="background-color: #fefefe">
+                    <div class="card-header cards-text card-header-style" style="background-color: whitesmoke; color: rgb(78, 78, 78)">
+                      {{state.name}}
+                    </div>
+                    <div class="card-body cards-text">
+                      <div class="card-deck">
+                        <div class="card" style="background-color: #fce9b2; color: #fcbd01;">Confirmed <br>{{state.confirmed}}</div>
+                        <div class="card" style="background-color: #bed7ec; color: #2e92eb;">Active <br> {{state.active}}</div>
+                      </div>
+                      <br class="d-none d-md-block">
+                      <div class="card-deck">
+                        <div class="card" style="background-color: #fac9c9; color: #fc6a6a;;">Deaths <br>{{state.deaths}}</div>
+                        <div class="card" style="background-color: #b3dab5; color: #32b639;">Recovered <br> {{state.recovered}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="card-back">
+                    <ng-container>
+                      <canvas
+                          baseChart
+                          [chartType]="'line'"
+                          [datasets]="chartData"
+                          [labels]="labelsData"
+                          [options]="chartOptions"
+                          [legend]="true">
+                      </canvas>
+                    </ng-container> -->
+                  <!-- </div> -->
+              </div>
+          </div>
+      </div>
     </div>
   </div>
+  
+  
+    <button *ngIf="isShow" (click)="gotoTop()">
+      <i class="fa fa-chevron-up" style="color: cornsilk"></i>
+    </button>
+   
 </div>
-
-
-  <button *ngIf="isShow" (click)="gotoTop()">
-    <i class="fa fa-chevron-up" style="color: cornsilk"></i>
-  </button>
 
 
 

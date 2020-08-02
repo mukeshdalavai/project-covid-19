@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   dataPointsRecovered = [];
   dataPointsDeaths = [];
   pieChartPoints = [];
+  oldScreenWidth : any;
   
 
   isMobile : boolean = true;
@@ -50,7 +51,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnInit() {   
+  ngOnInit() { 
+    this.oldScreenWidth = screen.width;  
 
     // console.log(screen.width);
     if (screen.width > 760){
@@ -236,6 +238,19 @@ export class HomeComponent implements OnInit {
       }]
     });
     pieChart.render();
+  }
+
+  onResize($event){
+    if (this.oldScreenWidth > 760 && $event.target.innerWidth <= 760){
+      console.log("Lappy to mobile");
+      window.location.reload();
+    }
+    if (this.oldScreenWidth < 760 && $event.target.innerWidth >= 760){
+      console.log("mobile to lappy");
+      window.location.reload();
+    }
+    // window.location.reload();
+    // console.log($event);
   }
 }
 
