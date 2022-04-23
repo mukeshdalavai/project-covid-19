@@ -10,6 +10,14 @@ services:
     ports:
       - 80:80
 
+  api-gateway:
+    image: api-gateway:1.0
+    build: ../api-gateway
+    container_name: api-gateway
+    ports:
+      - 443:443
+      - 9876:9876
+
   data-service:
     image: dmk0062/covid-data-service:1.0
     build: data-service/
