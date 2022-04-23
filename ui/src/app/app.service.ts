@@ -23,13 +23,13 @@ export class AppService {
   // }
 
   fetchStats(){
-    const url = `http://covidmapper.in:8080/api/v1/data`;
+    const url = `https://covidmapper.in/api/v1/data`;
     // console.log("Fetching stats data");
     return this.http.get<any>(url);
   }
 
   fetchDistrictsData(){
-    const url = `http://covidmapper.in:8080/api/v1/district-data`;
+    const url = `https://covidmapper.in/api/v1/district-data`;
     // console.log("Fetching Districts Data");
     return this.http.get<any>(url);
   }

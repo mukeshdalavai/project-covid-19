@@ -2,8 +2,8 @@ https:
   port: 443
   tls:
     'covidmapper.in':
-        key: './ssl/certificate.crt'
-        cert: './ssl/private.key'
+        key: './ssl/private.key'
+        cert: './ssl/certificate.crt'
 # http:
 #   port: 443
 admin:
@@ -12,10 +12,15 @@ admin:
 apiEndpoints:
   ui:
     host: covidmapper.in
-    paths: '/*'                   
+    paths: '/*'     
+  api:
+    host: covidmapper.in
+    paths: '/api/*'               
 serviceEndpoints:
   ui:
     url: 'http://localhost:80/'
+  api:
+    url: 'http://localhost:8080/'
 policies:
   - basic-auth
   - cors
@@ -34,4 +39,11 @@ pipelines:
           - action:
               serviceEndpoint: ui 
               changeOrigin: true
-                                                
+  api:
+    apiEndpoints:
+      - api
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: api 
+              changeOrigin: true

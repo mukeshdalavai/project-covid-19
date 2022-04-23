@@ -14,5 +14,5 @@ RUN npm run build
 
 WORKDIR  /app/dist/covidMapper
 
-ENTRYPOINT ["http-server", "-c1", "-p", "80"]
+ENTRYPOINT ["http-server", "-c1", "-p", "80", "--proxy", "https://covidmapper.in:443?"]
 
