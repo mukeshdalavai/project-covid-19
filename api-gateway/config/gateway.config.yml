@@ -1,0 +1,37 @@
+https:
+  port: 443
+  tls:
+    'covidmapper.in':
+        key: './ssl/certificate.crt'
+        cert: './ssl/private.key'
+# http:
+#   port: 443
+admin:
+  port: 9876
+  host: localhost
+apiEndpoints:
+  ui:
+    host: covidmapper.in
+    paths: '/*'                   
+serviceEndpoints:
+  ui:
+    url: 'http://localhost:80/'
+policies:
+  - basic-auth
+  - cors
+  - expression
+  - key-auth
+  - log
+  - oauth2
+  - proxy
+  - rate-limit
+pipelines:
+  ui:
+    apiEndpoints:
+      - ui
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: ui 
+              changeOrigin: true
+                                                
